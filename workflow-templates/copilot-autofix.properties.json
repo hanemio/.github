@@ -1,0 +1,5 @@
+name: Copilot Auto Fix
+description: CI 失敗時に自動で Copilot に修正を依頼するワークフロー
+iconName: octicon copilot
+categories:
+  - continuous-integration

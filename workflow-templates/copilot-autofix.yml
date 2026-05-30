@@ -1,0 +1,23 @@
+name: Copilot Auto Fix
+
+on:
+  workflow_run:
+    # ここに監視対象のワークフロー名を列挙してください
+    workflows:
+      - "CI"
+      # - "Build"
+      # - "Test"
+    types: [completed]
+
+jobs:
+  copilot-autofix:
+    uses: hanemio/.github/.github/workflows/copilot-autofix.yml@main
+    with:
+      run_id: ${{ github.event.workflow_run.id }}
+      run_conclusion: ${{ github.event.workflow_run.conclusion }}
+      run_event: ${{ github.event.workflow_run.event }}
+      run_html_url: ${{ github.event.workflow_run.html_url }}
+      head_sha: ${{ github.event.workflow_run.head_sha }}
+    permissions:
+      pull-requests: write
+      actions: read
